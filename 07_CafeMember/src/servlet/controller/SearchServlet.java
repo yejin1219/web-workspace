@@ -37,8 +37,13 @@ public class SearchServlet extends HttpServlet {
 		}
 		
 		 
-		//4. 네비게이션 -> view.jsp
-		 request.getRequestDispatcher("view.jsp").forward(request, response);
+		//4. 네비게이션 -> view.jsp // 시험 팁
+		if(vo!=null) {
+			request.getRequestDispatcher("view.jsp").forward(request, response);	
+		}else {
+			request.getRequestDispatcher("fail.jsp").forward(request, response);
+		}
+		 
 		
 	}
 
