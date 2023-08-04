@@ -76,21 +76,43 @@
       </form>
     </div>
     <script>
-      const age = document.querySelector("#age");
+      // const age = document.querySelector("#age");
+      // function checkData() {
+      //   //나이를 숫자로 입력하지 않았을 때
+      //   //alert로 숫자를 입력하라고 메세지 띄우고
+      //   //return false
+
+      //   const rge = /^[0-9]{1,}$/;
+      //   return rge.test(age.value);
+      // }
+
+      // age.addEventListener("input", function () {
+      //   if (!checkData()) {
+      //     alert("숫자를 입력해주세요");
+      //   }
+      // });
+
+      console.log(document.frm);
       function checkData() {
         //나이를 숫자로 입력하지 않았을 때
         //alert로 숫자를 입력하라고 메세지 띄우고
-        //return false
-
-        const rge = /^[0-9]{1,}$/;
-        return rge.test(age.value);
-      }
-
-      age.addEventListener("input", function () {
-        if (!checkData()) {
-          alert("숫자를 입력해주세요");
+        // return false
+        const rge = /^[0-9]+$/;
+        const age = document.frm.age.value;
+        if (isNaN(age)) {
+          alert("숫자로 입력해주세요");
+          return false;
+        } else {
+          return true;
         }
-      });
+        // 정규 표현식 사용<강사님 풀이 >
+        // if (rge.test(document.frm.age.value)) {
+        //   return true;
+        // } else {
+        //   alert("숫자를 입력해주세요!");
+        //   return false;
+        // }
+      }
     </script>
   </body>
 </html>
