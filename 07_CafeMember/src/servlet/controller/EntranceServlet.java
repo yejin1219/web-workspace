@@ -64,8 +64,8 @@ public class EntranceServlet extends HttpServlet {
 //		RequestDispatcher rdp = request.getRequestDispatcher("result.jsp");
 //		rdp.forward(request, response); // 이때 위에서 설정한 페이지로 이동 
 //       RequestDispatcher rdp = request.getRequestDispatcher("ViewMemberServlet");
-//		rdp.forward(request, response); --> forward : 응답을 계속 다음으로 넘기는 것
-		response.sendRedirect("view2"); // --> 바로 내가 응답처리할게 
+//		rdp.forward(request, response); 
+		response.sendRedirect("view2"); // 
 	}
 
 	

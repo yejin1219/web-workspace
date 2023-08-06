@@ -36,6 +36,9 @@ public class ViewMemberServlet2 extends HttpServlet {
 		
 		//3. 네비게이션 --> result.jsp
 		 request.getRequestDispatcher("result.jsp").forward(request, response);
+		 
+		 //response.sendRedirect: 클라이언트 측에서 새로운 URL로 이동하도록 요청합니다.
+		// request.getRequestDispatcher("").forward(request, response): 서버 내에서 다른 서블릿 또는 JSP로 요청과 응답을 전달하여 서버 내에서 페이지를 전환합니다.
 	}
 
 	
