@@ -28,9 +28,10 @@ public class FindMemberServlet extends HttpServlet {
 			dto = dao.findByIdMember(name);
 			session.setAttribute("dto", dto);
 			request.getRequestDispatcher("views/find_ok.jsp").forward(request, response);
-//			response.sendRedirect("views/find_ok.jsp");
+
 		} catch (SQLException e) {
-			response.sendRedirect("views/find_fail.jsp");
+			request.getRequestDispatcher("views/find_fail.jsp").forward(request, response);
+			
 			
 		}
 		
