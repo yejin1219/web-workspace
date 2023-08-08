@@ -105,3 +105,35 @@ public class 클래스명 extends HttpServler{
 - 서버 자원을 효율적으로 사용한다.(요청을 스레드 단위로 처리)
 - MVC 패턴을 쉽게 적용할 수 있다.
 - JSP 파일의 배포 위치는 HTML 파일과 동일하다.
+
+## EL
+
+- EL(Expression Language)은 JSP 2.0 버전에서 추가된 표현 언어
+- 표현식(Expression) 태그를 대신하여 클라이언트에 출력하고자 하는 값들을 좀 더 간결하게 사용하는 방법
+
+```
+<%=request.getParameter("name")%>
+
+${param.name}
+```
+
+### EL 내장 객체
+
+- requestScope : Request 영역 객체에 접근
+- sessionScope : Session 영역 객체에 접근
+- applicationScope : Application 영역 객체에 접근
+- param : 전달된 파라미터 값을 받아올 때 사용
+- paramValues : 전달된 파라미터들을 배열로 받아올 때 사용
+
+### EL 연산자
+
+- 나눗셈(/) : div
+- 나머지(%) : mod
+- and, or, ! : and, or, not
+- < : lt(less than)
+- > : gt(greater than)
+- <= : le(less or equal)
+- > = : ge(greater or equal)
+- == : eq(equal)
+- != : ne(not equal)
+- null값 처리(value==null) : empty
