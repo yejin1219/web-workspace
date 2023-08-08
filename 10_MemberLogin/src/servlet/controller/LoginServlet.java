@@ -24,10 +24,12 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		MemberDTO dto = new MemberDTO();
-		MemberDAO dao = new MemberDAO();
+//		MemberDAO dao = new MemberDAO();
 		try {
-			dto = dao.login(id, password);
+			dto = MemberDAO.getInstance().login(id, password);
 			session.setAttribute("dto", dto);
+//			로그인처럼 상태를 무조건 유지해야하는 경우만 session에 저장
+			// 한번만 호출 할 경우에는 request씀
 			
 		} catch (SQLException e) {}
 		response.sendRedirect("views/login_result.jsp");

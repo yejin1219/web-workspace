@@ -18,21 +18,24 @@ public class FindMemberServlet extends HttpServlet {
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-	    String name = request.getParameter("name");
+//		HttpSession session = request.getSession();
+	    String id = request.getParameter("id");
 		
 		
-		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = new MemberDTO();
+//		MemberDAO dao = new MemberDAO();
+//		MemberDTO dto = new MemberDTO();
 		try {
-			dto = dao.findByIdMember(name);
-			session.setAttribute("dto", dto);
-			request.getRequestDispatcher("views/find_ok.jsp").forward(request, response);
-
+			MemberDTO dto = MemberDAO.getInstance().findByIdMember(id);
+			
+			if(dto!=null) {
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("views/find_ok.jsp").forward(request, response);
+			}else {
+				response.sendRedirect("views/find_fail.jsp");
+			}
+	
 		} catch (SQLException e) {
-			request.getRequestDispatcher("views/find_fail.jsp").forward(request, response);
-			
-			
+	
 		}
 		
 	}

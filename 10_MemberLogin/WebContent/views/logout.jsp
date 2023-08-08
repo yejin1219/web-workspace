@@ -7,12 +7,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+
 <%
  MemberDTO dto = (MemberDTO)session.getAttribute("dto");
 if(dto!=null){
 	session.invalidate();
-	<a href="/index.jsp"> </a>
-} %>
-</body>
+%>
+<body onload="return logout()">
+
+<script>
+   function logout(){
+	   alert('logout!');
+	   location.href = "/index.jsp";
+   }
+</script>	
+
+
+</body>	
+<%} %>
+
 </html>

@@ -19,15 +19,16 @@ public class AllMemberServlet extends HttpServlet {
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		MemberDAO dao = new MemberDAO();
+		
+//		MemberDAO dao = new MemberDAO();
 		
 		ArrayList<MemberDTO> list = null;
 		try {
-			list = dao.showAllMember();
-			session.setAttribute("list", list);
+			list = MemberDAO.getInstance().showAllMember();
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/allShow.jsp").forward(request, response);
 		} catch (SQLException e) {}
-		request.getRequestDispatcher("views/allShow.jsp").forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

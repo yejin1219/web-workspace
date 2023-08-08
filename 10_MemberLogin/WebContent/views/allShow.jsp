@@ -28,8 +28,9 @@
 
         
   <%
-     ArrayList<MemberDTO>list = (ArrayList)session.getAttribute("list");
+     ArrayList<MemberDTO>list = (ArrayList)request.getAttribute("list");
      if(list!=null){
+    	 for(int i=0; i<list.size();i++){
   %>
      <tr>
         <td><%=i+1 %></td>
@@ -37,7 +38,7 @@
        <td><%=list.get(i).getName() %></td>
        <td><%=list.get(i).getAddress() %></td>
      </tr>
-    <%}%>
+    <%}}%>
      </table>
 
 

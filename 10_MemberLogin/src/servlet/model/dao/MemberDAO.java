@@ -9,22 +9,32 @@ import java.util.ArrayList;
 
 import Config.ServerInfo;
 import servlet.model.vo.MemberDTO;
+import servlet.model.dao.MemberDAO;
 
 public class MemberDAO implements MemberDAOTemplate{
+	
+	
+	
+	/*
+	싱글톤 패턴 - 클래스의 객체가 항상 하나만 존재하도록 
+	DAO를 반복적으로 생성하고 패제하는 것은 비효율적
+	객체지향적 설계! 상글톤 패턴은 객체지향적 설계 원칙을 준수 -> 중앙에서 처리!
+	싱글톤은 전역 상태를 가질 수 있으므로 오남용하면 애플리케이션의 복잡성이 증가
+	*/
 	
 	public static void main(String[] args) {
 		
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
-		dto.setId("user");
-		dto.setPassword("1234");
-		dto.setName("김씨");
-		dto.setAddress("서울");
+//		dto.setId("user");
+//		dto.setPassword("1234");
+//		dto.setName("김씨");
+//		dto.setAddress("서울");
 		try {
-			dao.registerMember(dto);
-//			System.out.println( dao.login("user", "1234").getName());
-//			System.out.println(dao.findByIdMember("user"));
-			System.out.println(dao.showAllMember());
+//			dao.registerMember(dto);
+			System.out.println( dao.login("user", "1234").getName());
+			System.out.println(dao.findByIdMember("dpwls1219"));
+//			System.out.println(dao.showAllMember());
 			} catch (SQLException e) {
 			
 		}
@@ -32,15 +42,23 @@ public class MemberDAO implements MemberDAOTemplate{
 		
 	}
 	
-	
-
+	private static MemberDAO dao = new MemberDAO();
 	public MemberDAO(){
 		try {
 			Class.forName(ServerInfo.DRIVER_NAME);
-			System.out.println("드라이버 연결 완료");
 		} catch (ClassNotFoundException e) {}
 		
 	}
+	public static MemberDAO getInstance() {
+		return dao;
+	}
+//	public MemberDAO(){
+//		try {
+//			Class.forName(ServerInfo.DRIVER_NAME);
+//			System.out.println("드라이버 연결 완료");
+//		} catch (ClassNotFoundException e) {}
+//		
+//	}
 	@Override
 	public Connection getConnection() throws SQLException {
 		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
@@ -107,8 +125,9 @@ public class MemberDAO implements MemberDAOTemplate{
 		ps.setString(1, id);
 		
 		ResultSet rs = ps.executeQuery();
-		MemberDTO dto = new MemberDTO();
+		MemberDTO dto = null;
 		if(rs.next()) {
+			dto = new MemberDTO();
 			dto.setId(id);
 			dto.setPassword(rs.getString("password"));
 			dto.setName(rs.getString("name"));
@@ -126,9 +145,10 @@ public class MemberDAO implements MemberDAOTemplate{
 		ResultSet rs = ps.executeQuery();
 		
 		 ArrayList<MemberDTO> list = new ArrayList<>();
-		 MemberDTO dto = new MemberDTO();
+		 
 		 
 		while(rs.next()) {
+			MemberDTO dto = new MemberDTO();
 			dto.setId(rs.getString("id"));
 			dto.setPassword(rs.getString("password"));
 			dto.setName(rs.getString("name"));

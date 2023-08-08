@@ -1,3 +1,4 @@
+<%@page import="servlet.model.vo.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +11,11 @@
 	<h1>회원 관리 기능</h1>
 	
 	<ul>
+	<%
+	  MemberDTO dto = ( MemberDTO) session.getAttribute("dto");
+	if(dto==null){
+		
+	%>
 		<%-- 로그인이 되어 있지 않은 경우 --%>
 		<li><a href="views/register.html">회원가입</a></li>
 		<%-- 회원가입 : 아이디, 비밀번호, 이름, 주소 입력 받아서
@@ -24,6 +30,7 @@
 			                        -> 세션 데이터 바인딩 -> views/login_result.jsp (정보 출력)
 		 --%>
 		
+		<%}else{ %>
 		<%-- 로그인 되었을 때 --%>	
 		<li><a href="views/search.html">회원검색</a></li>
 		<%--
@@ -36,6 +43,8 @@
 		 --%>
 		<li><a href="views/logout.jsp">로그아웃</a></li>
 		<%-- 로그아웃 : 로그아웃하고 index.jsp로 로면 됨 --%>
+		
+		<%} %>
 	</ul>
 </body>
 </html>

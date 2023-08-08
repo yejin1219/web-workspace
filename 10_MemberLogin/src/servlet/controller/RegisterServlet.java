@@ -32,15 +32,18 @@ public class RegisterServlet extends HttpServlet {
 		dto.setName(name);
 		dto.setAddress(address);
 		
-		MemberDAO dao = new MemberDAO();
+//		MemberDAO dao = new MemberDAO();
 		try { //회원가입 성공
-			dao.registerMember(dto);
+			MemberDAO.getInstance().registerMember(dto);
 			session.setAttribute("dto", dto);
 			response.sendRedirect("AllMemberServlet");
-		} catch (SQLException e) {}
-		//회원가입 실패 한 경우
-		System.out.println("회원가입 실패");
-		response.sendRedirect("index.jsp");
+		} catch (SQLException e) {
+			//회원가입 실패 한 경우
+			System.out.println("회원가입 실패");
+			response.sendRedirect("index.jsp");
+			
+		}
+		
 		
 		
 

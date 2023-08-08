@@ -10,18 +10,17 @@ pageEncoding="UTF-8"%>
   <body>
   <%
   
-  MemberDTO dto = (MemberDTO)session.getAttribute("dto");
+  MemberDTO dto = (MemberDTO)request.getAttribute("dto");
   if(dto!=null){
   
   %>
-    <h2>회원 검색</h2>
+    <h2>회원 검색 결과</h2>
     <ul>
       <li>아이디 : <%=dto.getId()%></li>
       <li>이름 : <%=dto.getName()%></li>
       <li>주소 : <%=dto.getAddress()%></li>
     </ul>
-    <%}else{ %>
-       <h3>검색 실패..! 다시 입력하세요</h3>
-    <%} %>
+    <%}%>
+       
   </body>
 </html>
