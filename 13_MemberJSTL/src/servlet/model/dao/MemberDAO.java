@@ -159,17 +159,22 @@ public class MemberDAO implements MemberDAOTemplate{
 		return list;
 	}
 	@Override
-	public MemberDTO updateMember(MemberDTO dto) throws SQLException {
+	public void updateMember(MemberDTO dto) throws SQLException {
 		Connection conn = getConnection();
 		String query = "UPDATE MEMBER2 SET PASSWORD=? , NAME=? ,ADDRESS=? WHERE ID=?  ";
 		PreparedStatement ps = conn.prepareStatement(query);
+		ps.setString(1, dto.getPassword());
+		ps.setString(2, dto.getName());
+		ps.setString(3, dto.getAddress());
+		ps.setString(4, dto.getId());
+		
+		ps.executeUpdate();
+		
+		closeAll(ps,conn);
+		  
 		
 		
-		 MemberDTO dto2 = new MemberDTO();
-		  ps.setString(1, query);
 		
-		
-		return null;
 	}
 
 }
