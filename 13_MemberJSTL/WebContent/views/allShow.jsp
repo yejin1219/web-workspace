@@ -20,7 +20,6 @@
      <h2>전체 회원 보기</h2>
      <table class="table">
         <tr>
-            <th></th>
             <th>아이디</th>
             <th>이름</th>
             <th>주소</th>
@@ -29,18 +28,17 @@
 
        
   
-  <c:if test="${list ne null}">
+  
      <c:forEach items="${list}" var="member" >
     
      <tr>
-        <td></td>
        <td>${member.id}</td>
        <td>${member.name}</td>
-       <td>${memebr.address}</td>
+       <td>${member.address}</td>
      </tr>
    
   </c:forEach>
-   </c:if>
+
 
      </table>
 

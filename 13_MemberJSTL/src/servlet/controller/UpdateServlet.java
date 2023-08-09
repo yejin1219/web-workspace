@@ -21,24 +21,29 @@ public class UpdateServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		MemberDTO dto = (MemberDTO)session.getAttribute("dto");
 		
-		String id = dto.getId();
+		
+		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		
-		MemberDTO dto2 = new MemberDTO();
-		dto2.setId(id);
-		dto2.setPassword(password);
-		dto2.setName(name);
-		dto2.setAddress(address);
+		MemberDTO dto = new MemberDTO();
+		dto.setId(id);
+		dto.setPassword(password);
+		dto.setName(name);
+		dto.setAddress(address);
 		
 		
 		
 		  try {
-			MemberDAO.getInstance().updateMember(dto2);
-			session.setAttribute("dto2", dto2);
+			MemberDAO.getInstance().updateMember(dto);
+			if(session.getAttribute("dto")!=null) {
+				session.setAttribute("dto", dto);
+			}
+			
+			request.getRequestDispatcher("views/update_result.jsp").forward(request, response);
+//			session에 담았기 때문에 redirect로 보내도 됨
 		} catch (SQLException e) {}
 	}
 

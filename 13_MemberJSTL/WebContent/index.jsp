@@ -12,7 +12,7 @@
 	<h1>회원 관리 기능</h1>
     <c:choose>
 	  <c:when test="${empty dto}">
-	  <ul>
+	   <ul>
 	  <%-- 로그인이 되어 있지 않은 경우 --%>
 		<li><a href="views/register.html">회원가입</a></li>
 		<%-- 회원가입 : 아이디, 비밀번호, 이름, 주소 입력 받아서
