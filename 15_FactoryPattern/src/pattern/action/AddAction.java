@@ -9,7 +9,7 @@ public class AddAction implements Action {
 
 	@Override
 	public void execute() {
-		/*
+		/* 비즈니스 로직
 		 * 1. 폼값 받아서
 		 * 2. 객체 생성하고
 		 * 3. DAO리턴받고
