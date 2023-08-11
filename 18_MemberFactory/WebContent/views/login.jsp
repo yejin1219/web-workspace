@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2>Login Page</h2>
-    <form action="/login.do" >
+    <form action="/login.do" method="post">
        ID : <input type="text" name="id" required><br>
        PASSWORD : <input type="password" name="password" required><br>
       

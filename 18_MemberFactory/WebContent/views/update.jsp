@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/update.do" >
+<form action="/update.do" method="post">
 
 <h2>회원 정보 수정</h2>
  
