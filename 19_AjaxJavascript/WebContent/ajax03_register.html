@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+    form input{
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+    <h2>Register Page</h2>
+    <form action="/register.do" method="post" >
+      
+       ID : <input type="text" name="id" id="id"required>
+       <input type="button" value="중복체크" onclick="startRequest()"><br>
+       <span id="idCheckView">
+       <!-- 기존 DB에 아이디가 있으면 ID 사용 불가
+                     아이디가 없으면 ID 사용 가능
+              command : idCheck.do
+              dao: findByIdMember 사용하거나 새로만든다면 idExist 만들어도 됨 
+               -->
+               
+       <script>
+        
+         let xhr;
+         function startRequest(){
+        	 xhr = new XMLHttpRequest();
+        	 xhr.onreadystatechange = callback;
+        	 const idValue = document.querySelector("#id").value;
+        	 xhr.open("get","idCheck.do?id=" + idValue);
+        	 xhr.send(null);
+         }
+         
+         function callback(){
+        	 if(xhr.readyState === 4 && xhr.status ===200){
+        		 const text = xhr.responseText;
+        		 document.querySelector("#idCheckView").innerHTML
+        		  = "<h4>" + text + "</h4>"
+        	 }
+         }
+               
+               
+         </script>     
+       </span>
+       PASSWORD : <input type="password" name="password" required><br>
+       NAME : <input type="text" name="name" required><br>
+       ADDRESS : <input type="text" name="address" required><br>
+       <input type="submit" value="register">
+
+    
+</body>
+</html>

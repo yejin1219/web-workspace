@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <!-- 
+순서대로 진행 : 동기적
+순서와 상관없이 빨리 처리되는 것부터 진행, 클라이언트 화면에서 처리, 페이지가 바뀌지 않는다..(서버만 갔다옴) : 비동기적
+ -->
+    <h2>Show Count</h2>
+    <input type="button" value="count 증가" onclick="startRequest()" />
+    <div id="resultView"></div>
+
+    <script>
+      let xhr; //XML Http Request
+      function startRequest() {
+        //요청에 해당하는 로직을 담는 함수
+        xhr = new XMLHttpRequest(); //서버랑 상호작용하기 위해 나온 함수(비동기적으로 처리하기 위해 사용)
+        // alert(xhr.readyState); // 0 readyState : 현 준비상태를 표시
+
+        xhr.onreadystatechange = callback; // 콜백함수 연결
+        // alert(xhr.readyState); // 0
+
+        xhr.open("get", "CountServlet?id=ajax&&pass=1212"); //(서버한테 어떤 방식으로 넘길건지, 어디로 넘길건지) *요청
+        // alert(xhr.readyState); //1
+
+        xhr.send(null); // GET방식이어서 NULL
+        //이때 서버로 날라간다. 즉 실질적인 요청이 이때 들어간다.!
+        // alert(xhr.readyState); //1
+      }
+
+      function callback() {
+        // 응답에 해당하는 로직을 담는 함수
+        // alert("callback :: " + xhr.readyState); //1 *응답 -> 4까지 응답
+        if (xhr.readyState === 4) {
+          //   console.log(xhr.status); //200
+          if (xhr.status === 200) {
+            const text = xhr.responseText;
+            document.querySelector("#resultView").innerHTML =
+              "<h4>" + text + "</h4>";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
