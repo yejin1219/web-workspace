@@ -21,23 +21,31 @@
               command : idCheck.do
               dao: findByIdMember 사용하거나 새로만든다면 idExist 만들어도 됨 
                -->
-               
+        
        <script>
         
          let xhr;
          function startRequest(){
         	 xhr = new XMLHttpRequest();
         	 xhr.onreadystatechange = callback;
-        	 const idValue = document.querySelector("#id").value;
-        	 xhr.open("get","idCheck.do?id=" + idValue);
-        	 xhr.send(null);
+        	//const idValue = document.querySelector("#id").value;
+        	// xhr.open("get","idCheck.do?id=" + idValue);
+        	xhr.open("post","idCheck.do");
+        	//post 방식때는 키값을 보낸거다 라고 인식해주는 역할 
+        	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+        	xhr.send("id=" + document.querySelector("#id").value); //body 로 보내짐
          }
          
          function callback(){
         	 if(xhr.readyState === 4 && xhr.status ===200){
-        		 const text = xhr.responseText;
-        		 document.querySelector("#idCheckView").innerHTML
-        		  = "<h4>" + text + "</h4>"
+        		 const flag = xhr.responseText; 
+        		 const idCheckView = document.querySelector("#idCheckView");
+        		 if(flag === "true"){//eval(flag)=== true
+        			 idCheckView.innerHTML = "<span style='color:red;'>ID 사용 불가!</span>";
+        		 }else{
+        			 idCheckView.innerHTML = "<span style='color:blue;'>ID 사용 가능!</span>";
+        		 }
+        		   
         	 }
          }
                

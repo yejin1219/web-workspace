@@ -14,15 +14,24 @@ public class idCheckController implements Controller{
 @Override
 public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	 String id = request.getParameter("id");
-	 PrintWriter out = response.getWriter();
+	 
 	 
 	 MemberVO vo = new MemberVO();
 	 vo = MemberDAO.getInstance().findByIdMember(id);
 				
+	 boolean flag = false;
 	 if(vo!=null) {
-		 out.print("이 ID는 사용 불가한 아이디입니다.");
-	 }else {
-		 out.print("이 ID는 사용 가능한 아이디입니다.");
+		 flag = true;
 	 }
-	return new ModelAndView();
+	 
+	 //비동기 방식
+	 PrintWriter out = response.getWriter();
+	 out.print(flag);
+	 
+//	 if(vo!=null) {
+//		 out.print("이 ID는 사용 불가한 아이디입니다.");
+//	 }else {
+//		 out.print("이 ID는 사용 가능한 아이디입니다.");
+//	 }
+	return null;
 }}
