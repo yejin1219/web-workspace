@@ -50,8 +50,8 @@ public class ItemDAO implements ItemDAOTemplate {
        ResultSet rs = ps.executeQuery();
        ArrayList<Item> items = new ArrayList<>();
        while(rs.next()) {
-    	   Item item = new Item(rs.getInt("itemId"), rs.getString("itemName"), rs.getInt("price"),
-    			   rs.getString("description"), rs.getString("pictureUrl"),rs.getInt("count"));
+    	   Item item = new Item(rs.getInt(1), rs.getString(2), rs.getInt(3),
+    			   rs.getString(4), rs.getString(5),rs.getInt(6));
     	   items.add(item);
        }
        closeAll(rs,ps,conn);
@@ -68,8 +68,8 @@ public class ItemDAO implements ItemDAOTemplate {
 		ResultSet rs = ps.executeQuery();
 		Item item = null;
 		if(rs.next()) {
-			item = new Item(itemId, rs.getString("itemName"), rs.getInt("price"),
-	    			   rs.getString("description"), rs.getString("pictureUrl"),rs.getInt("count"));
+			item = new Item(itemId, rs.getString(2), rs.getInt(3),
+	    			   rs.getString(4), rs.getString(5),rs.getInt(6));
 		}
 		closeAll(ps,conn);
 		return item;

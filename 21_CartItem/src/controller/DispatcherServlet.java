@@ -37,11 +37,9 @@ public class DispatcherServlet extends HttpServlet {
 			ModelAndView mv = controller.handle(request, response);
 			
 			if(mv!=null) { //4. mv 안에  객체가 존재한다면 
-				if(mv.isRedirect()) { //4-1. isRedirect 가 true면 네비게이션 sendRedirect 사용
-				  response.sendRedirect(mv.getPath());	
-				}else {//4-2. false면 네비게이션 getRequestDispatcher 사용
-					request.getRequestDispatcher(mv.getPath()).forward(request, response);
-				}
+				if(mv.isRedirect()) response.sendRedirect(mv.getPath());	
+				else request.getRequestDispatcher(mv.getPath()).forward(request, response);
+				
 			}
 		} catch (Exception e) {
 
