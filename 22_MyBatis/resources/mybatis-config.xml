@@ -34,7 +34,7 @@
                   - POOLED  : 사용하겠다.
                   - UNPOOLED : 사용하지 않겠다.
          -->
-        <dataSource type="POOLED ">
+        <dataSource type="POOLED">
            <property name="driver" value="${driver}"/>
            <property name="url" value="${url}"/>
            <property name="username" value="${username}"/>
