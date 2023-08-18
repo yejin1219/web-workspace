@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import servlet.model.dao.MemberDAO;
+import servlet.model.service.MemberService;
 import servlet.model.vo.MemberDTO;
 
-@WebServlet("/AllMemberServlet")
+@WebServlet("/member/all")
 public class AllMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,9 +26,10 @@ public class AllMemberServlet extends HttpServlet {
 		
 		ArrayList<MemberDTO> list = null;
 		try {
-			list = MemberDAO.getInstance().showAllMember();
+			list = new MemberService().showAllMember();
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/allShow.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/allShow.jsp").forward(request, response);
+			                             //views 앞에 / 붙이기
 		} catch (SQLException e) {}
 		
 	}

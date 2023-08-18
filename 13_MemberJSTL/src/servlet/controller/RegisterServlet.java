@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
 		try { //회원가입 성공
 			MemberDAO.getInstance().registerMember(dto);
 			session.setAttribute("dto", dto);
-			response.sendRedirect("AllMemberServlet");
+			response.sendRedirect("/member/all");
 		} catch (SQLException e) {
 			//회원가입 실패 한 경우
 			System.out.println("회원가입 실패");
