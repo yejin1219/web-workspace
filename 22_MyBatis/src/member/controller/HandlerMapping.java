@@ -1,6 +1,6 @@
 package member.controller;
 
-import member.controller.component.AllmemberController;
+import member.controller.component.AllMemberController;
 import member.controller.component.FindController;
 import member.controller.component.LoginController;
 import member.controller.component.LogoutController;
@@ -33,7 +33,7 @@ public class HandlerMapping {
 		}else if(command.equals("update.do")) {
 			controller = new UpdateController();
 		}else if(command.equals("allmember.do")) {
-			controller = new AllmemberController();
+			controller = new AllMemberController();
 		}else if(command.equals("logout.do")) {
 			controller = new LogoutController();
 		}

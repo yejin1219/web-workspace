@@ -32,11 +32,11 @@ public class MemberDAO {
 	}
 	
 	public List<MemberVO> showAllMember (SqlSession sqlSession){
-		return sqlSession.selectList("memberMapper.showAllMember");
+		return sqlSession.selectList("memberMapper.showAllMember2");
 	}
 	
-	public MemberVO findByIdMember (SqlSession sqlSession, String id) {
-		return sqlSession.selectOne("memberMapper.findByIdMember", id);
+	public List<MemberVO> findByIdMember (SqlSession sqlSession, List<String> list) {
+		return sqlSession.selectList("memberMapper.findByMember", list);
 	}
 
 	public MemberVO login (SqlSession sqlSession, MemberVO vo) {

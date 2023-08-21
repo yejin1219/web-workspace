@@ -9,6 +9,13 @@
 </head>
 <body>
 	<h1>회원 관리 기능</h1>
+	<ul>
+		<%-- 로그인 되었을 때 --%>	
+		<li><a href="views/search.html">회원검색</a></li>
+		<%--
+			회원 검색 : 검색할 아이디를 입력받아서 -> FindMemberServlet -> 검색 성공하면 views/find_ok.jsp (정보 출력)
+			                                              -> 실패하면 views/find_fail.jsp
+		 --%>
     <c:choose>
 	  <c:when test="${empty vo}">
 	   <ul>
@@ -29,13 +36,7 @@
 	     </c:when>
 		
 		<c:otherwise>
-		<ul>
-		<%-- 로그인 되었을 때 --%>	
-		<li><a href="views/search.html">회원검색</a></li>
-		<%--
-			회원 검색 : 검색할 아이디를 입력받아서 -> FindMemberServlet -> 검색 성공하면 views/find_ok.jsp (정보 출력)
-			                                              -> 실패하면 views/find_fail.jsp
-		 --%>
+		
 		<li><a href="/allmember.do">전체회원보기</a></li>
 		<%--
 			전체회원보기 : views/allShow.jsp에 전체 리스트 출력
@@ -51,9 +52,10 @@
 		          -> update_result.jsp : ..님의 정보를 수정했다. + a링크로 index.jsp로
 		 --%>
 		
-	     </ul>
+	     
 		</c:otherwise>
 		</c:choose>
+		</ul>
 	
 </body>
 </html>

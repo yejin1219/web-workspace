@@ -8,8 +8,19 @@
     
     <form action="/find.do" method="post" >
     <h2>회원 검색</h2>
-    <h3>아이디를 입력세요.</h3>
-    <input type="text" name="id" />
+    
+    <!-- 아이디 : <input type="text" name="id" /><br>
+     주소 : <input type="text" name="addr"><br>
+     --> 
+     <label>
+        <input type="checkbox" name="checkId" value="user">user
+     </label>
+     <label>
+        <input type="checkbox" name="checkId" value="user2">user2
+     </label>
+     <label>
+        <input type="checkbox" name="checkId" value="user3">user3
+     </label>
     <input type="submit" value="조회" />
     </form>
   </body>

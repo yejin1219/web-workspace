@@ -19,5 +19,15 @@ ADDRESS : <input type="text" name="address" value="${vo.address}"  /><br><br>
 
 
 </form>
+
+<h2>비밀번호만 변경</h2>
+<form action="/update.do" method="post">
+
+ID : <input type = "text" name="id" value="${vo.id}" readonly><br><br>
+PASSWORD : <input type="text" name="password" value="${vo.password}" /><br><br>
+<input type="submit" value="등록">
+</form>
+
+
 </body>
 </html>
