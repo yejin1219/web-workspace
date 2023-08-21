@@ -15,13 +15,13 @@ public class FindController implements Controller{
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String word = request.getParameter("word");
-		
-		StudentVO vo = new StudentVO();
-		
-		
-		
 		List<StudentVO> list = new StudentService().showStudent(word);
-		return null;
+		String path = "";
+		if(list!=null) {
+			request.setAttribute("list",list);
+			path = "views/index.jsp";
+		}
+		return new ModelAndView(path);
 	}
 
 }
