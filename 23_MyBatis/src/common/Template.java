@@ -18,7 +18,6 @@ public class Template {
         
         try {
 			InputStream stream = Resources.getResourceAsStream(resource);
-			
 			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 			SqlSessionFactory factory =  builder.build(stream);
 			session = factory.openSession(false);
